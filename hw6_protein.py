@@ -17,7 +17,14 @@ Parameters: str
 Returns: str
 '''
 def readFile(filename):
-    return
+    file = open(filename, "r")
+    words = ''
+    for line in file:
+        if len(line) > 1:
+            line = line.strip()
+            words += line
+    file.close()
+    return words
 
 
 '''
