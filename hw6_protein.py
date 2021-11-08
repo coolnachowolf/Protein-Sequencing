@@ -61,8 +61,19 @@ Returns: dict mapping strs to strs
 '''
 def makeCodonDictionary(filename):
     import json
-
-    return
+    f = open(filename)
+    data = json.load(f)
+    codon_dict = {}
+    for amino_value in data:
+        for value in data[amino_value]:
+            codon_value = ''
+            for i in range(len(value)):
+                if(value[i]=="T"):
+                    codon_value += "U"
+                else:
+                    codon_value += value[i]
+            codon_dict[codon_value] = amino_value
+    return codon_dict
 
 
 '''
@@ -210,7 +221,7 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testDnaToRna()
+    test.testMakeCodonDictionary()
     """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
