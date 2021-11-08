@@ -34,7 +34,18 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
+    dna_lst = []
+    start = startIndex
+    s = ''
+    rna_lst = []
+    while startIndex in range(len(dna)):
+        s += dna[startIndex]
+        if(len(s)==3):
+            dna_lst.append(s)
+            s = ''
+    for string in dna_lst:
+        rna_lst.append(string.replace("T", "U"))
+    return rna_lst
 
 
 '''
