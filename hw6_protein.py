@@ -35,14 +35,19 @@ Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
     dna_lst = []
-    start = startIndex
     s = ''
     rna_lst = []
-    while startIndex in range(len(dna)):
-        s += dna[startIndex]
+    end_value = ["TAA", "TAG", "TGA"]
+    i = startIndex
+    while i in range(len(dna)):
+        s += dna[i]
+        i += 1
         if(len(s)==3):
             dna_lst.append(s)
-            s = ''
+            if(s in end_value):
+                break
+            else:
+                s = ''  
     for string in dna_lst:
         rna_lst.append(string.replace("T", "U"))
     return rna_lst
@@ -56,6 +61,7 @@ Returns: dict mapping strs to strs
 '''
 def makeCodonDictionary(filename):
     import json
+
     return
 
 
@@ -204,10 +210,13 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
+    test.testDnaToRna()
+    """
     print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     runWeek1()
+    """
 
     ## Uncomment these for Week 2 ##
     """
