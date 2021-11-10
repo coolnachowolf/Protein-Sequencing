@@ -4,6 +4,7 @@ Name:
 Roll Number:
 """
 
+from matplotlib.pyplot import axes
 import hw6_protein_tests as test
 
 project = "Protein" # don't edit this
@@ -309,8 +310,8 @@ def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     plt.xlabel("List of Amino Acids")
     plt.ylabel("Frequencies of amino acids")
 
-    plt.bar(x_axis-0.12, freqList1, color = "#4CAF50", width = 0.25)
-    plt.bar(x_axis+0.12, freqList2, color = "#FC4605", width = 0.25)
+    plt.bar(x_axis-0.2, freqList1, color = "#4CAF50", edgecolor = edgeList ,width = 0.4)
+    plt.bar(x_axis+0.2, freqList2, color = "#FC4605", edgecolor = edgeList, width = 0.4)
 
     plt.legend([label1, label2])
     plt.xticks(x_axis, xLabels, rotation = "horizontal")
@@ -327,7 +328,16 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    return
+    edgeColor_list = []
+    amino_list = []
+    for diff in biggestDiffs:
+        amino_list.append(diff[0])
+    for label in labels:
+        if label in amino_list:
+            edgeColor_list.append("black")
+        else:
+            edgeColor_list.append("white")
+    return edgeColor_list
 
 
 '''
